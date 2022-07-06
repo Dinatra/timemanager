@@ -1,0 +1,31 @@
+// Font
+// <link rel="preconnect" href="https://fonts.googleapis.com">
+// <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+// <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+
+$tm-font: 'Inter', sans-sherif;
+
+// White theme
+
+$tm-light-background: #f4f5f9;
+$tm-light-foreground: #ffffff;
+$tm-light-contrast: #8d8998;
+
+// Dark theme
+
+$tm-dark-background: #28243d;
+$tm-dark-foreground: #312d4b;
+$tm-dark-contrast: #aaa6bf;
+
+// colors panel
+
+$tm-red: #fe4c51;
+$tm-black: #333333;
+$tm-green: #56ca00;
+$tm-white: #ffffff;
+$tm-violet: #b188fe;
+$tm-orange: #ffb400;
+$tm-dark-violet: #9155fd;
+$tm-gray: #f3f3f4;
+
+$tm-radius: 15px;

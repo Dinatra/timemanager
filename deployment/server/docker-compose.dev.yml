@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: ./api
+    environment:
+      - DATABASE_URL=ecto://postgres:postgres@db/timemachine_dev
+      - MIX_ENV=prod mix release
+      - SECRET_KEY_BASE=xxx-xxx-xxx-xxx
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"

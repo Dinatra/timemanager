@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  api:
+    command: "/bin/sh -c './prod/rel/timemachine/bin/timemachine eval Timemachine.Release.migrate ; ./prod/rel/timemachine/bin/timemachine eval Timemachine.Release.seed ; ./prod/rel/timemachine/bin/timemachine start'"
+
+  postman:
+    container_name: api_postman
+    image: postman/newman
+    entrypoint: "/bin/sh"
+    command: "-c 'sleep 20 && newman run https://www.getpostman.com/collections/44741875fcda94f2c431'"
+    depends_on:
+      - db
+      - api

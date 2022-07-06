@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+  client:
+    container_name: client_vue
+    image: registry.xxxxxx.site/timemanager-client:latest
+    networks:
+      - reverse-proxy-traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client.tls=true"
+      - "traefik.http.routers.client.tls.certresolver=myresolver"
+      - "traefik.http.routers.client.rule=Host(`app.xxxxxx.site`) && !PathPrefix(`/api`)"
+
+networks:
+  reverse-proxy-traefik:
+    external: true

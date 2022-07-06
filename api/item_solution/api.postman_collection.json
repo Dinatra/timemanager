@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "903afa65-50d5-4409-b338-5addc813dda1",
+		"name": "timemachine_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User  - Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.username).to.eql(\"user1\")",
+							"    pm.expect(obj.data.email).to.eql(\"user1@gmail.com\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"user1\",\n        \"email\": \"user1@gmail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clock - Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.status).to.eql(false)",
+							"    pm.expect(Date.parse(obj.data.time)).to.lessThan(Date.now())",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clock\": {\n        \"status\": false,\n        \"time\": \"2021-10-26 11:31:53\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/clocks/8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"clocks",
+						"8080"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WorkingTime - Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function () {",
+							"    pm.expect(obj.data.start).to.eql(\"2021-10-26T11:31:53Z\")",
+							"    pm.expect(obj.data.end).to.eql(\"2021-10-27T11:31:53Z\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workingtime\": {\n        \"start\": \"2021-10-26 11:31:53\",\n        \"end\": \"2021-10-27 11:31:53\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/workingtimes/8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workingtimes",
+						"8080"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Modify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct modified object\", function() {",
+							"    pm.expect(obj.data.username).to.eql(\"henri\")",
+							"    pm.expect(obj.data.email).to.eql(\"henri@gmail.com\")",
+							"    pm.expect(obj.data.id).to.eql(8080)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"henri\",\n        \"email\": \"henri@gmail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"8080"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WorkingTime - Modify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct modified object\", function() {",
+							"    pm.expect(obj.data.start).to.eql(\"2021-10-26T00:31:55Z\")",
+							"    pm.expect(obj.data.end).to.eql(\"2021-10-27T00:31:55Z\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workingtime\": {\n        \"start\": \"2021-10-26 00:31:55\",\n        \"end\": \"2021-10-27 00:31:55\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/workingtimes/9090",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workingtimes",
+						"9090"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - GetBy(email, username)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.username).to.eql(\"marc\")",
+							"    pm.expect(obj.data.email).to.eql(\"marc@gmail.com\")",
+							"    pm.expect(obj.data.id).to.eql(4242)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users?username=marc&email=marc@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "marc"
+						},
+						{
+							"key": "email",
+							"value": "marc@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - GetBy(id)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.username).to.eql(\"marc\")",
+							"    pm.expect(obj.data.email).to.eql(\"marc@gmail.com\")",
+							"    pm.expect(obj.data.id).to.eql(4242)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users/4242",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"4242"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clock - Get in user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.length).to.eql(2)",
+							"    ",
+							"    pm.expect(obj.data[0].status).to.eql(false)",
+							"    pm.expect(Date.parse(obj.data[0].time)).to.lessThan(Date.now())",
+							"",
+							"    pm.expect(obj.data[1].status).to.eql(false)",
+							"    pm.expect(Date.parse(obj.data[1].time)).to.lessThan(Date.now())",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/clocks/4242",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"clocks",
+						"4242"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WorkingTime - GetAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.length).to.greaterThan(1)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workingtimes/8080?start=2021-10-23T13:53:28&end=2021-10-30T13:53:30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workingtimes",
+						"8080"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2021-10-23T13:53:28"
+						},
+						{
+							"key": "end",
+							"value": "2021-10-30T13:53:30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WorkingTime - Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const obj = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Return correct object\", function() {",
+							"    pm.expect(obj.data.id).to.eql(4444)",
+							"    ",
+							"   pm.expect(Date.parse(obj.data.start)).to.lessThan(Date.now())",
+							"   pm.expect(Date.parse(obj.data.end)).to.lessThan(Date.now())",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workingtimes/4444",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workingtimes",
+						"4444"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users/5050",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"5050"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WorkingTime - Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/workingtimes/4242",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"workingtimes",
+						"4242"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

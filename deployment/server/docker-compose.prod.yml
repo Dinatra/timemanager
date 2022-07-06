@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  api:
+    container_name: api
+    image: registry.xxxxxx.site/timemanager-api:latest
+    environment:
+      - DATABASE_URL=ecto://postgres:${POSTGRES_PASSWORD}@db/timemachine_dev
+      - MIX_ENV=prod mix release
+      - SECRET_KEY_BASE=xxx-xxx-xxx-xxx
+    depends_on:
+      - db
+    networks:
+      - reverse-proxy-traefik
+      - db-cannal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.tls=true"
+      - "traefik.http.routers.api.tls.certresolver=myresolver"
+      - "traefik.http.routers.api.rule=Host(`app.xxxxxx.site`) && PathPrefix(`/api`)"
+      - "traefik.http.services.api.loadbalancer.server.port=4000"
+
+networks:
+  reverse-proxy-traefik:
+    external: true

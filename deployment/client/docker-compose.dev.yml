@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  client:
+    container_name: client_vue
+    build:
+      context: ./client
+      args:
+      - VUE_APP_API_URL=http://localhost:4000
+    ports:
+      - "8080:80"
